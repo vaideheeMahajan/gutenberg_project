@@ -1,21 +1,51 @@
-<div>
-        <div style="background-color: #1e88e5;color: white">
-                <button fxFlex="5%" mat-icon-button [routerLink]="['/home']">
+<style>
+    .example-form .mat-form-field .mat-form-field-label{
+        color: white !important;
+    }
+    .book-list-component .book-list-header {
+        background-color: rgb(0, 98, 210);
+        color: white
+    }
+    .book-list-component .back-button{
+        padding-top: 10px;
+    }
+    .book-list-component .close-button{
+        padding-top: 10px;
+    }
+    .book-list-component .form-field{
+        color: white;
+    }
+    .book-list-component .card-style.mat-card{
+        margin-bottom: 20px !important;
+    }
+    .book-list-component .book-title{
+        font-weight: 550;
+    }
+    .book-list-component .icon-color{
+        color: white;
+    }
+    .book-list-component .book-list{
+        margin: 10px;
+    }
+</style>
+<div class="book-list-component">
+        <div class="book-list-header">
+                <button fxFlex="5%" mat-icon-button [routerLink]="['/home']" class="back-button">
                     <mat-icon>arrow_back</mat-icon>
                 </button>
-                <form class="example-form" fxFlex="95%">
-                    <mat-form-field class="example-full-width fxFlex">
-                        <input matInput placeholder="Search" (keyup)="onKeyUp($event)" fxFlex>
+                <form class="example-form" fxFlex="15%">
+                    <mat-form-field class="form-field fxFlex">
+                        <input matInput placeholder="Search" (keyup)="onKeyUp($event)" [(ngModel)]="searchTerm" fxFlex [ngModelOptions]="{standalone: true}"/>
                     </mat-form-field>
-                    <button mat-icon-button (click)="clearSearch()">
-                        <mat-icon>close</mat-icon>
-                    </button>
                 </form>
+                <button mat-icon-button (click)="clearSearch()" fxFlex="5%" class="close-button">
+                    <mat-icon class="icon-color">close</mat-icon>
+                </button>
             </div>
-            <div fxLayout="row wrap" fxLayoutAlign="space-evenly none" >
-                    <mat-card fxFlex="25" *ngFor="let book of booksList"  style="margin: 15px" (click)=readBook(book)>
+            <div fxLayout="row wrap" fxLayoutAlign="space-evenly none" fxLayoutGap>
+                    <mat-card fxFlex="30" *ngFor="let book of booksList" class="card-style" (click)="readBook(book)">
                             <mat-card-content>
-                                <p>{{book.title}}</p>
+                                <p class="book-title">{{book.title}}</p>
                                 <p>{{book.authorName}}</p>
                             </mat-card-content>
                       </mat-card>

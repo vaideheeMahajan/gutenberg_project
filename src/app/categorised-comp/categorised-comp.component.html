@@ -1,20 +1,48 @@
-<div style="text-align:center; background-color: #1e88e5; margin: 0; color: white; height: 100%;">
-      <h1 style="margin-top: 0px;">
-            Gutenberg
-      </h1>
-      <h1>
-            Project
-      </h1>
-</div>
-<mat-card *ngFor="let option of groupedData" style="background-color: #1e88e5;">
-      <mat-card-content>
-            <div fxLayout="row" fxLayoutAlign="space-between stretch">
-                  <div fxFlex="95%" style="text-align: left;color: white">
-                        {{option}}
+<style>
+      .home-page{
+            background-color:rgb(31,136,229);
+            box-shadow: none !important;
+      }
+      .home-page .main-heading-div{
+            text-align:center;
+              margin: 0px; 
+              color: white;
+               height: 100%;
+               font-size: 30px;
+      }
+      .home-page .main-heading{
+            margin: 0px; 
+      }
+      .home-page .card-content-style{
+            background-color: rgb(0, 98, 210);
+            padding: 10px;
+      }
+      .home-page .category-style{
+            text-align: left;
+            color: white;
+            font-size: 15px;
+            padding-top: 10px;
+      }
+      .home-page .icon-color{
+            color: white;
+      }
+</style>
+<div class="home-page">
+      <div class="main-heading-div">
+            <h1 class="main-heading">
+                  Gutenberg <br> Project
+            </h1>
+      </div>
+      <mat-card *ngFor="let category of groupedData" class="home-page">
+            <mat-card-content class="card-content-style">
+                  <div fxLayout="row" fxLayoutAlign="space-between stretch">
+                        <div fxFlex="95%" class="category-style">
+                              {{category}}
+                        </div>
+                        <button fxFlex="5%" mat-icon-button (click)="nextPage(category)">
+                              <mat-icon class="icon-color">arrow_forward</mat-icon>
+                        </button>
                   </div>
-                  <button fxFlex="5%" mat-icon-button (click)="nextPage(option)">
-                        <mat-icon>arrow_forward</mat-icon>
-                  </button>
-            </div>
-      </mat-card-content>
-</mat-card>
+            </mat-card-content>
+      </mat-card>
+</div>

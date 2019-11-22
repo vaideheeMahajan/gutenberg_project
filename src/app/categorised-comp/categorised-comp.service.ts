@@ -57,10 +57,20 @@ export class CategorisedCompService {
   getFilteredUrl(formats) {
     var url ;
     _.filter(formats, function (val, key) {
-      if (key.indexOf("text/html") != -1 && val.indexOf("htm") != -1) {
+      if (key.indexOf("text/html") != -1 && _.endsWith(val, ".htm") || key.indexOf("application/pdf") != -1 && _.endsWith(val, ".pdf") || key.indexOf("text/html") != -1 && _.endsWith(val, ".txt")) {
         url = val;
       }
     });
     return url;
+  }
+
+  getBooksListBySearch (booksList, searchTerm) {
+    var list = [];
+    _.filter(booksList, function(obj){
+      if(obj.title.toLowerCase().indexOf(searchTerm) != -1 || obj.authorName.toLowerCase().indexOf(searchTerm) != -1){
+        list.push(obj);
+      }
+    })
+    return list;
   }
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit , Input} from '@angular/core';
-import { FormControl } from '@angular/forms';
 import {CategorisedCompService } from '../categorised-comp/categorised-comp.service';
 
 @Component({
@@ -10,28 +9,40 @@ import {CategorisedCompService } from '../categorised-comp/categorised-comp.serv
 export class BooksListComponent implements OnInit {
   private booksList;
   private booksDetails;
+  private category;
+  private searchTerm;
   constructor(private categorisedCompService : CategorisedCompService) { }
 
   ngOnInit() {
-    // var x = this.ar;
-    // var y = this.a;
-    var category = history.state.category;
+    this.category = history.state.category;
     this.booksDetails = this.categorisedCompService.bookDetails;
-    this.booksList = this.categorisedCompService.getBooksListByCategory(this.booksDetails, category);
-    
+    this.getBooksList();
   }
 
   onKeyUp(ev){
-    
+    if(ev.keyCode == 13){
+      this.getBooksList();
+    }
   }
 
   readBook(book){
     if(book.url){
       window.open(book.url);
     }else{
-      alert("only opens html file format");
+      alert("No viewable version available");
     }
-    
+  }
+
+  clearSearch(){
+    this.searchTerm = "";
+    this.getBooksList();
+  }
+
+  getBooksList(){
+    this.booksList = this.categorisedCompService.getBooksListByCategory(this.booksDetails, this.category);
+    if(this.searchTerm){
+      this.booksList = this.categorisedCompService.getBooksListBySearch(this.booksList, this.searchTerm);
+    }
   }
 
 }
