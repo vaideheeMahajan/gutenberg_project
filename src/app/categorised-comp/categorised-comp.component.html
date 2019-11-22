@@ -1,0 +1,20 @@
+<div style="text-align:center; background-color: #1e88e5; margin: 0; color: white; height: 100%;">
+      <h1 style="margin-top: 0px;">
+            Gutenberg
+      </h1>
+      <h1>
+            Project
+      </h1>
+</div>
+<mat-card *ngFor="let option of groupedData" style="background-color: #1e88e5;">
+      <mat-card-content>
+            <div fxLayout="row" fxLayoutAlign="space-between stretch">
+                  <div fxFlex="95%" style="text-align: left;color: white">
+                        {{option}}
+                  </div>
+                  <button fxFlex="5%" mat-icon-button (click)="nextPage(option)">
+                        <mat-icon>arrow_forward</mat-icon>
+                  </button>
+            </div>
+      </mat-card-content>
+</mat-card>

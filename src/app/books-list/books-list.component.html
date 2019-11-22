@@ -1,0 +1,24 @@
+<div>
+        <div style="background-color: #1e88e5;color: white">
+                <button fxFlex="5%" mat-icon-button [routerLink]="['/home']">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+                <form class="example-form" fxFlex="95%">
+                    <mat-form-field class="example-full-width fxFlex">
+                        <input matInput placeholder="Search" (keyup)="onKeyUp($event)" fxFlex>
+                    </mat-form-field>
+                    <button mat-icon-button (click)="clearSearch()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </form>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="space-evenly none" >
+                    <mat-card fxFlex="25" *ngFor="let book of booksList"  style="margin: 15px" (click)=readBook(book)>
+                            <mat-card-content>
+                                <p>{{book.title}}</p>
+                                <p>{{book.authorName}}</p>
+                            </mat-card-content>
+                      </mat-card>
+                    
+            </div>
+</div>
